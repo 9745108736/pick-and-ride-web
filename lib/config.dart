@@ -3,9 +3,13 @@ class Config {
   // static String paymentUrl = 'https://prozigzagbus.cscodetech.cloud/';
   // static String imageBaseUrl = "https://prozigzagbus.cscodetech.cloud/";
 
-  static String baseUrl = 'https://prozigzagbus.cscodetech.cloud/api/';
+  // static String baseUrl = 'https://prozigzagbus.cscodetech.cloud/api/';
   static String paymentUrl = 'https://prozigzagbus.cscodetech.cloud/';
   static String imageBaseUrl = "https://prozigzagbus.cscodetech.cloud/";
+  static String baseUrl = 'https://forwardg5.sg-host.com/api/';
+  // static String baseUrl = 'https://forwardg5.sg-host.com/api/';
+  // static String paymentUrl = 'https://forwardg5.sg-host.com/';
+  // static String imageBaseUrl = "https://forwardg5.sg-host.com/";
 
   static String login = 'user_login.php';
   static String signup = 'reg_user.php';

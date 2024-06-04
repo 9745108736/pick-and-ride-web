@@ -68,4 +68,5 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://pick-and-ride-a7067-default-rtdb.firebaseio.com',
     storageBucket: 'pick-and-ride-a7067.appspot.com',
   );
+
 }
