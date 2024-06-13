@@ -4,9 +4,11 @@ class Config {
   // static String imageBaseUrl = "https://prozigzagbus.cscodetech.cloud/";
 
   // static String baseUrl = 'https://prozigzagbus.cscodetech.cloud/api/';
-  static String paymentUrl = 'https://prozigzagbus.cscodetech.cloud/';
-  static String imageBaseUrl = "https://prozigzagbus.cscodetech.cloud/";
+  static String paymentUrl = 'https://forwardg5.sg-host.com/';
+  static String imageBaseUrl = "https://forwardg5.sg-host.com/";
   static String baseUrl = 'https://forwardg5.sg-host.com/api/';
+
+
   // static String baseUrl = 'https://forwardg5.sg-host.com/api/';
   // static String paymentUrl = 'https://forwardg5.sg-host.com/';
   // static String imageBaseUrl = "https://forwardg5.sg-host.com/";

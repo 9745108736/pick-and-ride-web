@@ -50,15 +50,14 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCnDHwkO54HkITMVdpJf2ev7NY5mRzCMaM',
-    appId: '1:50267147295:web:c9733d13feddfb7822192a',
-    messagingSenderId: '50267147295',
-    projectId: 'pick-and-ride-a7067',
-    authDomain: 'pick-and-ride-a7067.firebaseapp.com',
-    databaseURL: 'https://pick-and-ride-a7067-default-rtdb.firebaseio.com',
-    storageBucket: 'pick-and-ride-a7067.appspot.com',
-    measurementId: 'G-LSDH24Q4PC',
-  );
+      apiKey: "AIzaSyCnDHwkO54HkITMVdpJf2ev7NY5mRzCMaM",
+      authDomain: "pick-and-ride-a7067.firebaseapp.com",
+      databaseURL: "https://pick-and-ride-a7067-default-rtdb.firebaseio.com",
+      projectId: "pick-and-ride-a7067",
+      storageBucket: "pick-and-ride-a7067.appspot.com",
+      messagingSenderId: "50267147295",
+      appId: "1:50267147295:web:ddccf282f3f495e422192a",
+      measurementId: "G-56XFYVQ2BB");
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBLzXKqvbm5CLjx8TbABTznw4r3KyJ9p-E',
@@ -68,5 +67,4 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://pick-and-ride-a7067-default-rtdb.firebaseio.com',
     storageBucket: 'pick-and-ride-a7067.appspot.com',
   );
-
 }
