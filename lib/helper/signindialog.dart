@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -41,7 +40,6 @@ class _SigninDialogState extends State<SigninDialog> {
     agentLogin.agentLogin(context);
   }
 
-
   SignUpApi signUpApi = Get.put(SignUpApi());
   AgentDataController agentLogin = Get.put(AgentDataController());
   MobileCkeckController mobileCheckApi = Get.put(MobileCkeckController());
@@ -75,17 +73,20 @@ class _SigninDialogState extends State<SigninDialog> {
 
   String pin = "";
   var temp;
+
   @override
   Widget build(BuildContext context) {
     notifier = Provider.of<ColorNotifier>(context, listen: true);
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return LayoutBuilder(builder: (context, constraints) {
-      return signUpWidget(constraints);
-    },);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return signUpWidget(constraints);
+      },
+    );
   }
 
-  Widget signUpWidget(constraints){
+  Widget signUpWidget(constraints) {
     return DefaultTabController(
       length: 2,
       initialIndex: tabIndex,
@@ -95,56 +96,110 @@ class _SigninDialogState extends State<SigninDialog> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: constraints.maxWidth < 500 ? 50 : 100,right: constraints.maxWidth < 500 ? 50 : 100,top: 10, bottom: 10),
+                padding: EdgeInsets.only(
+                    left: constraints.maxWidth < 500 ? 50 : 100,
+                    right: constraints.maxWidth < 500 ? 50 : 100,
+                    top: 10,
+                    bottom: 10),
                 child: Column(
                   children: [
-                    SvgPicture.asset('assets/logo/zigzagLogo.svg',height: 40),
-                    Text('ZigzagBus',style: TextStyle(fontSize: 24,color: notifier.purplecolor,fontFamily: 'SofiaBold'),),
+                    SvgPicture.asset('assets/logo/zigzagLogo.svg', height: 40),
+                    Text(
+                      'ZigzagBus',
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: notifier.purplecolor,
+                          fontFamily: 'SofiaBold'),
+                    ),
                     const SizedBox(height: 20),
-                    Text('Sign Up on Zigzag'.tr,style: TextStyle(fontSize: 28,color: notifier.blackcolor,fontFamily: 'SofiaBold'),),
-                    const SizedBox(height: 15,),
+                    Text(
+                      'Sign Up on Zigzag'.tr,
+                      style: TextStyle(
+                          fontSize: 28,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaBold'),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
                   ],
                 ),
               ),
               Container(child: carouselSlider(constraints)),
               Padding(
-                padding: agentLogin.agentData?.agentStatus == "1" ? EdgeInsets.only(left: constraints.maxWidth < 500 ? 16 : 100,right: constraints.maxWidth < 500 ? 16 : 100, bottom: 20) :
-                EdgeInsets.only(left: constraints.maxWidth < 500 ? 50 : 100,right: constraints.maxWidth < 500 ? 50 : 100,top: 10, bottom: 10),
+                padding: agentLogin.agentData?.agentStatus == "1"
+                    ? EdgeInsets.only(
+                        left: constraints.maxWidth < 500 ? 16 : 100,
+                        right: constraints.maxWidth < 500 ? 16 : 100,
+                        bottom: 20)
+                    : EdgeInsets.only(
+                        left: constraints.maxWidth < 500 ? 50 : 100,
+                        right: constraints.maxWidth < 500 ? 50 : 100,
+                        top: 10,
+                        bottom: 10),
                 child: Column(
                   children: [
-                    const SizedBox(height: 15,),
-                    agentLogin.agentData?.agentStatus == "1" ? TabBar(
-                      indicatorColor: notifier.purplecolor,
-                      onTap: (value) {
-                        setState(() {
-                          tabIndex = value;
-                        });
-                      },
-                      tabs: [
-                        Tab(
-                          child: Text('User'.tr,style: TextStyle(fontFamily: 'SofiaLight',fontSize: 16,color: notifier.blackcolor,fontWeight: FontWeight.w600),),
-                        ),
-                        Tab(
-                          child: Text('Agent'.tr,style: TextStyle(fontFamily: 'SofiaLight',fontSize: 16,color: notifier.blackcolor,fontWeight: FontWeight.w600),
-                          ),),
-                      ],
-                    ) : const SizedBox(),
-                    SizedBox(height: constraints.maxWidth < 500 ? 30 : 40,),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    agentLogin.agentData?.agentStatus == "1"
+                        ? TabBar(
+                            indicatorColor: notifier.purplecolor,
+                            onTap: (value) {
+                              setState(() {
+                                tabIndex = value;
+                              });
+                            },
+                            tabs: [
+                              Tab(
+                                child: Text(
+                                  'User'.tr,
+                                  style: TextStyle(
+                                      fontFamily: 'SofiaLight',
+                                      fontSize: 16,
+                                      color: notifier.blackcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              Tab(
+                                child: Text(
+                                  'Agent'.tr,
+                                  style: TextStyle(
+                                      fontFamily: 'SofiaLight',
+                                      fontSize: 16,
+                                      color: notifier.blackcolor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ],
+                          )
+                        : const SizedBox(),
+                    SizedBox(
+                      height: constraints.maxWidth < 500 ? 30 : 40,
+                    ),
                     TextField(
                       controller: signUpApi.signName,
                       keyboardType: TextInputType.name,
-                      style: TextStyle(fontSize: 16,color: notifier.blackcolor,fontFamily: 'SofiaLight'),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaLight'),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 12),
                         hintText: 'Enter your Name'.tr,
-                        hintStyle: TextStyle(fontSize: 14,color: notifier.subgreycolor,fontFamily: 'SofiaLight'),
+                        hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: notifier.subgreycolor,
+                            fontFamily: 'SofiaLight'),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                       ),
                     ),
@@ -152,18 +207,26 @@ class _SigninDialogState extends State<SigninDialog> {
                     TextField(
                       controller: signUpApi.signEmail,
                       keyboardType: TextInputType.emailAddress,
-                      style: TextStyle(fontSize: 16,color: notifier.blackcolor,fontFamily: 'SofiaLight'),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaLight'),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 12),
                         hintText: 'Enter your Email'.tr,
-                        hintStyle: TextStyle(fontSize: 14,color: notifier.subgreycolor,fontFamily: 'SofiaLight'),
+                        hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: notifier.subgreycolor,
+                            fontFamily: 'SofiaLight'),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                       ),
                     ),
@@ -175,50 +238,70 @@ class _SigninDialogState extends State<SigninDialog> {
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly,
                       ],
-                      style: TextStyle(fontSize: 16,color: notifier.blackcolor,fontFamily: 'SofiaLight'),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaLight'),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 12),
                         hintText: 'Phone Number'.tr,
-                        hintStyle: TextStyle(fontSize: 14,color: notifier.subgreycolor,fontFamily: 'SofiaLight'),
+                        hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: notifier.subgreycolor,
+                            fontFamily: 'SofiaLight'),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                       ),
                       showCountryFlag: false,
                       showDropdownIcon: false,
-                      dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                      initialCountryCode: 'IN',
+                      dropdownTextStyle: TextStyle(
+                          fontSize: 14,
+                          color: notifier.blackcolor,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'SofiaLight'),
+                      initialCountryCode: 'QA',
                       onCountryChanged: (value) {
                         setState(() {
-                          signUpApi.ccode  =  value.dialCode;
+                          signUpApi.ccode = value.dialCode;
                         });
                       },
-                      onChanged: (phone) {
-
-                      },
+                      onChanged: (phone) {},
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     TextField(
                       controller: signUpApi.signPass,
                       keyboardType: TextInputType.visiblePassword,
-                      style: TextStyle(fontSize: 16,color: notifier.blackcolor,fontFamily: 'SofiaLight'),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaLight'),
                       obscureText: true,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 12),
                         hintText: 'Enter Password'.tr,
-                        hintStyle: TextStyle(fontSize: 14,color: notifier.subgreycolor,fontFamily: 'SofiaLight'),
+                        hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: notifier.subgreycolor,
+                            fontFamily: 'SofiaLight'),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                       ),
                     ),
@@ -226,19 +309,27 @@ class _SigninDialogState extends State<SigninDialog> {
                     TextField(
                       controller: signUpApi.referalCode,
                       keyboardType: TextInputType.text,
-                      style: TextStyle(fontSize: 16,color: notifier.blackcolor,fontFamily: 'SofiaLight'),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaLight'),
                       obscureText: true,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 12),
                         hintText: 'Enter Referral Code (optional)'.tr,
-                        hintStyle: TextStyle(fontSize: 14,color: notifier.subgreycolor,fontFamily: 'SofiaLight'),
+                        hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: notifier.subgreycolor,
+                            fontFamily: 'SofiaLight'),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                       ),
                     ),
@@ -246,47 +337,63 @@ class _SigninDialogState extends State<SigninDialog> {
                     SizedBox(
                       child: ElevatedButton(
                         style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(notifier.purplecolor),
+                            backgroundColor:
+                                MaterialStatePropertyAll(notifier.purplecolor),
                             elevation: const MaterialStatePropertyAll(0),
-                            shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)))
-                        ),
+                            shape: MaterialStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(24)))),
                         onPressed: () async {
-
-
                           callSignUp(constraints);
 
-
-                          (agentLogin.agentData!.agentStatus == tabIndex.toString()) ? signUpApi.userType = "AGENT" : signUpApi.userType = "USER";
-
-                        }, child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Text('Sign Up'.tr,style: const TextStyle(fontFamily: 'SofiaBold',color: Colors.white,fontSize: 16,)),
-                      ),
+                          (agentLogin.agentData!.agentStatus ==
+                                  tabIndex.toString())
+                              ? signUpApi.userType = "AGENT"
+                              : signUpApi.userType = "USER";
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Text('Sign Up'.tr,
+                              style: const TextStyle(
+                                fontFamily: 'SofiaBold',
+                                color: Colors.white,
+                                fontSize: 16,
+                              )),
+                        ),
                       ),
                     ),
                     SizedBox(height: constraints.maxWidth < 500 ? 20 : 30),
                     RichText(
                         text: TextSpan(
                             text: "Already have an account ".tr,
-                            style: TextStyle(fontFamily: 'SofiaLight',color: notifier.blackcolor,fontSize: 14),
+                            style: TextStyle(
+                                fontFamily: 'SofiaLight',
+                                color: notifier.blackcolor,
+                                fontSize: 14),
                             children: [
-                              TextSpan(
-                                recognizer: TapGestureRecognizer()..onTap = () {
-                                  Get.back();
-                                  showDialog(
-                                    context: context, builder: (context) {
+                          TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Get.back();
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
                                     return Dialog(
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(14)),
                                         insetPadding: const EdgeInsets.all(20),
                                         child: const LoginDialog());
                                   },
-                                  );
-                                },
-                                text: 'Log In'.tr,
-                                style: TextStyle(fontFamily: 'SofiaLight',color: notifier.purplecolor,fontSize: 14),
-                              )
-                            ]
-                        )),
+                                );
+                              },
+                            text: 'Log In'.tr,
+                            style: TextStyle(
+                                fontFamily: 'SofiaLight',
+                                color: notifier.purplecolor,
+                                fontSize: 14),
+                          )
+                        ])),
                   ],
                 ),
               )
@@ -297,41 +404,49 @@ class _SigninDialogState extends State<SigninDialog> {
     );
   }
 
-  callSignUp(constraints){
-    if(signUpApi.signMobile.text.length == 10){
-
-      mobileCheckApi.mobileCheck(context,signUpApi.signMobile.text).then((value) async {
-
+  callSignUp(constraints) {
+    SignUpApi signUpApi = Get.find<SignUpApi>();
+    print("select country code - ${signUpApi.ccode}");
+    if (signUpApi.signMobile.text.length >= 7) {
+      mobileCheckApi
+          .mobileCheck(context, signUpApi.signMobile.text)
+          .then((value) async {
         if (signUpApi.signMobile.text.isNotEmpty) {
-
-          if(value["Result"] == "true"){
-
-            if(signUpApi.signName.text.isNotEmpty && signUpApi.signEmail.text.isNotEmpty && signUpApi.signMobile.text.isNotEmpty && signUpApi.signPass.text.isNotEmpty){
-
+          if (value["Result"] == "true") {
+            if (signUpApi.signName.text.isNotEmpty &&
+                signUpApi.signEmail.text.isNotEmpty &&
+                signUpApi.signMobile.text.isNotEmpty &&
+                signUpApi.signPass.text.isNotEmpty) {
               showDialog(
                 barrierDismissible: false,
                 context: context,
                 builder: (context) {
                   return Dialog(
                     backgroundColor: notifier.whitecolor,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14)),
                     child: otpField(context, constraints),
                   );
-                },);
-              temp = await FirebaseAuthentication().sendOTP(signUpApi.signMobile.text);
-
+                },
+              );
+              temp = await FirebaseAuthentication()
+                  .sendOTP(signUpApi.signMobile.text);
             } else {
               Fluttertoast.showToast(
                 toastLength: Toast.LENGTH_LONG,
-                webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+                webBgColor: notifier.isDark
+                    ? "linear-gradient(to right, #ffffff, #ffffff)"
+                    : "linear-gradient(to right, #000000, #000000)",
                 msg: 'Something Went wrong!'.tr,
                 textColor: notifier.blackwhitecolor,
               );
-          }
-            } else {
+            }
+          } else {
             Fluttertoast.showToast(
               toastLength: Toast.LENGTH_LONG,
-              webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+              webBgColor: notifier.isDark
+                  ? "linear-gradient(to right, #ffffff, #ffffff)"
+                  : "linear-gradient(to right, #000000, #000000)",
               msg: 'Something Went wrong! Please try again'.tr,
               textColor: notifier.blackwhitecolor,
             );
@@ -339,26 +454,29 @@ class _SigninDialogState extends State<SigninDialog> {
         } else {
           Fluttertoast.showToast(
             toastLength: Toast.LENGTH_LONG,
-            webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+            webBgColor: notifier.isDark
+                ? "linear-gradient(to right, #ffffff, #ffffff)"
+                : "linear-gradient(to right, #000000, #000000)",
             msg: 'Something Went wrong!'.tr,
             textColor: notifier.blackwhitecolor,
           );
         }
-
       });
       // Get.back();
     } else {
       Fluttertoast.showToast(
         toastLength: Toast.LENGTH_LONG,
-        webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+        webBgColor: notifier.isDark
+            ? "linear-gradient(to right, #ffffff, #ffffff)"
+            : "linear-gradient(to right, #000000, #000000)",
         msg: 'Something Went wrong!'.tr,
         textColor: notifier.blackwhitecolor,
       );
     }
   }
 
-  Widget carouselSlider(constraints){
-    return  CarouselSlider(
+  Widget carouselSlider(constraints) {
+    return CarouselSlider(
         items: [
           for (int a = 0; a < logsignLottie.length; a++)
             Padding(
@@ -370,15 +488,28 @@ class _SigninDialogState extends State<SigninDialog> {
                     margin: const EdgeInsets.only(right: 5),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Lottie.asset( logsignLottie[a],height: constraints.maxWidth < 500 ? 160 : 180)
-                    ),
+                        child: Lottie.asset(logsignLottie[a],
+                            height: constraints.maxWidth < 500 ? 160 : 180)),
                   ),
                   const SizedBox(height: 10),
-                  Text(lottieTitle[a],style: TextStyle(fontFamily: 'SofiaBold',color: notifier.blackcolor,fontSize: 16),textAlign: TextAlign.center),
+                  Text(lottieTitle[a],
+                      style: TextStyle(
+                          fontFamily: 'SofiaBold',
+                          color: notifier.blackcolor,
+                          fontSize: 16),
+                      textAlign: TextAlign.center),
                   const SizedBox(height: 5),
-                  Container(width: 60,color: notifier.purplecolor,height: 1.5),
+                  Container(
+                      width: 60, color: notifier.purplecolor, height: 1.5),
                   const SizedBox(height: 10),
-                  Text(description[a],style: TextStyle(fontFamily: 'SofiaLight',color: notifier.subgreycolor,fontSize: 12),textAlign: TextAlign.center,),
+                  Text(
+                    description[a],
+                    style: TextStyle(
+                        fontFamily: 'SofiaLight',
+                        color: notifier.subgreycolor,
+                        fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
                 ],
               ),
             ),
@@ -402,7 +533,8 @@ class _SigninDialogState extends State<SigninDialog> {
           scrollDirection: Axis.horizontal,
         ));
   }
-  Widget otpField(context, constraints){
+
+  Widget otpField(context, constraints) {
     return SizedBox(
       width: 390,
       height: 350,
@@ -412,7 +544,13 @@ class _SigninDialogState extends State<SigninDialog> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Enter OTP'.tr,style: TextStyle(fontSize: 28,color: notifier.blackcolor,fontFamily: 'SofiaBold'),),
+            Text(
+              'Enter OTP'.tr,
+              style: TextStyle(
+                  fontSize: 28,
+                  color: notifier.blackcolor,
+                  fontFamily: 'SofiaBold'),
+            ),
             const SizedBox(height: 40),
             // OTPTextField(
             //   length: 5,
@@ -447,13 +585,15 @@ class _SigninDialogState extends State<SigninDialog> {
               borderRadius: BorderRadius.circular(10),
               showFieldAsBox: true,
               decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: notifier.purplecolor,),borderRadius: BorderRadius.circular(10))
-              ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: notifier.purplecolor,
+                      ),
+                      borderRadius: BorderRadius.circular(10))),
               fieldWidth: constraints.maxWidth < 600 ? 30 : 50,
               fieldHeight: constraints.maxWidth < 600 ? 30 : 50,
-              onCodeChanged: (String code) {
-              },
-              onSubmit: (String verificationCode){
+              onCodeChanged: (String code) {},
+              onSubmit: (String verificationCode) {
                 pin = verificationCode;
                 // showDialog(
                 //     context: context,
@@ -467,7 +607,15 @@ class _SigninDialogState extends State<SigninDialog> {
               },
             ),
             const SizedBox(height: 20),
-            Text("Re-send",style: TextStyle(fontSize: 14,color: notifier.purplecolor,fontFamily: 'SofiaLight',fontWeight: FontWeight.w600),textAlign: TextAlign.end,),
+            Text(
+              "Re-send",
+              style: TextStyle(
+                  fontSize: 14,
+                  color: notifier.purplecolor,
+                  fontFamily: 'SofiaLight',
+                  fontWeight: FontWeight.w600),
+              textAlign: TextAlign.end,
+            ),
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.only(right: 20, left: 20),
@@ -479,28 +627,41 @@ class _SigninDialogState extends State<SigninDialog> {
                     onTap: () {
                       Get.back();
                     },
-                    child: Text("Back".tr,style: TextStyle(fontSize: 14,color: notifier.blackcolor,fontFamily: 'SofiaLight',fontWeight: FontWeight.w600),),
+                    child: Text(
+                      "Back".tr,
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaLight',
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                   const Spacer(),
                   ElevatedButton(
                       style: ButtonStyle(
                         elevation: const MaterialStatePropertyAll(0),
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                        backgroundColor: MaterialStatePropertyAll(notifier.purplecolor),
+                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12))),
+                        backgroundColor:
+                            MaterialStatePropertyAll(notifier.purplecolor),
                       ),
                       onPressed: () {
-                        FirebaseAuthentication().authenticateMe(temp, pin).then((value){
-                          if(value){
+                        FirebaseAuthentication()
+                            .authenticateMe(temp, pin)
+                            .then((value) {
+                          if (value) {
                             Fluttertoast.showToast(
                               toastLength: Toast.LENGTH_LONG,
-                              webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+                              webBgColor: notifier.isDark
+                                  ? "linear-gradient(to right, #ffffff, #ffffff)"
+                                  : "linear-gradient(to right, #000000, #000000)",
                               msg: 'Something Went wrong!'.tr,
                               textColor: notifier.blackwhitecolor,
                             );
                             Get.back();
                           } else {
                             signUpApi.signUpWithMobile(context).then((value) {
-                              if(value["Result"] == "true"){
+                              if (value["Result"] == "true") {
                                 Fluttertoast.showToast(
                                   toastLength: Toast.LENGTH_LONG,
                                   webBgColor: notifier.isDark
@@ -509,21 +670,32 @@ class _SigninDialogState extends State<SigninDialog> {
                                   msg: value["ResponseMsg"],
                                   textColor: notifier.blackwhitecolor,
                                 );
-                              } else { Fluttertoast.showToast(
-                                toastLength: Toast.LENGTH_LONG,
-                                webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
-                                msg: value["ResponseMsg"],
-                                textColor: notifier.blackwhitecolor,
-                              );
+                              } else {
+                                Fluttertoast.showToast(
+                                  toastLength: Toast.LENGTH_LONG,
+                                  webBgColor: notifier.isDark
+                                      ? "linear-gradient(to right, #ffffff, #ffffff)"
+                                      : "linear-gradient(to right, #000000, #000000)",
+                                  msg: value["ResponseMsg"],
+                                  textColor: notifier.blackwhitecolor,
+                                );
                               }
                             });
                           }
                         });
-
-                      }, child: Padding(
-                    padding: const EdgeInsets.only(top: 6, bottom: 6, right: 30, left: 30),
-                    child: Text("Next".tr,style: const TextStyle(fontSize: 18,color: Colors.white,fontFamily: 'SofiaLight',fontWeight: FontWeight.w600),),
-                  )),
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 6, bottom: 6, right: 30, left: 30),
+                        child: Text(
+                          "Next".tr,
+                          style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontFamily: 'SofiaLight',
+                              fontWeight: FontWeight.w600),
+                        ),
+                      )),
                 ],
               ),
             ),

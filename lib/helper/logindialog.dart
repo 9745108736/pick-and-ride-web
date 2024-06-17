@@ -28,6 +28,7 @@ class LoginDialog extends StatefulWidget {
 
 class _LoginDialogState extends State<LoginDialog> {
   late ColorNotifier notifier;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -35,7 +36,6 @@ class _LoginDialogState extends State<LoginDialog> {
 
     // print(islogin);
   }
-
 
   LoginApiController logInApi = Get.put(LoginApiController());
   MobileCkeckController mobileCheckApi = Get.put(MobileCkeckController());
@@ -69,50 +69,72 @@ class _LoginDialogState extends State<LoginDialog> {
 
   bool islogin = false;
 
-
-
   bool isloadCarousel = true;
+
   @override
   Widget build(BuildContext context) {
     notifier = Provider.of<ColorNotifier>(context, listen: true);
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return LayoutBuilder(builder: (context, constraints) {
-      return logInWidget(constraints);
-    },);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return logInWidget(constraints);
+      },
+    );
   }
-  Widget logInWidget(constraints){
+
+  Widget logInWidget(constraints) {
     notifier = Provider.of<ColorNotifier>(context, listen: true);
     return Container(
       decoration: BoxDecoration(
-          color: notifier.whitecolor,
-          borderRadius: BorderRadius.circular(14)
-      ),
+          color: notifier.whitecolor, borderRadius: BorderRadius.circular(14)),
       child: SingleChildScrollView(
         child: SizedBox(
           width: 600,
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 10,left: constraints.maxWidth < 500 ? 10 : 100,right: constraints.maxWidth < 500 ? 10 : 100,bottom: 10),
+                padding: EdgeInsets.only(
+                    top: 10,
+                    left: constraints.maxWidth < 500 ? 10 : 100,
+                    right: constraints.maxWidth < 500 ? 10 : 100,
+                    bottom: 10),
                 child: Column(
                   children: [
-                    SvgPicture.asset('assets/logo/zigzagLogo.svg',height: 40),
-                    Text('ZigzagBus',style: TextStyle(fontSize: 24,color: notifier.purplecolor,fontFamily: 'SofiaBold'),),
+                    SvgPicture.asset('assets/logo/zigzagLogo.svg', height: 40),
+                    Text(
+                      'ZigzagBus',
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: notifier.purplecolor,
+                          fontFamily: 'SofiaBold'),
+                    ),
                     const SizedBox(height: 20),
-                    Text('Log In on Zigzag'.tr,style: TextStyle(fontSize: 28,color: notifier.blackcolor,fontFamily: 'SofiaBold'),),
-                    const SizedBox(height: 20,),
+                    Text(
+                      'Log In on Zigzag'.tr,
+                      style: TextStyle(
+                          fontSize: 28,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaBold'),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
-
               Container(child: carouselSlider(constraints)),
-
               Padding(
-                padding: EdgeInsets.only(top: 10,left: constraints.maxWidth < 500 ? 16 : 100,right: constraints.maxWidth < 500 ? 16 : 100,bottom: 10),
+                padding: EdgeInsets.only(
+                    top: 10,
+                    left: constraints.maxWidth < 500 ? 16 : 100,
+                    right: constraints.maxWidth < 500 ? 16 : 100,
+                    bottom: 10),
                 child: Column(
                   children: [
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     IntlPhoneField(
                       keyboardType: TextInputType.number,
                       disableLengthCheck: true,
@@ -120,48 +142,67 @@ class _LoginDialogState extends State<LoginDialog> {
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly,
                       ],
-                      style: TextStyle(fontSize: 16,color: notifier.blackcolor,fontFamily: 'SofiaLight'),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaLight'),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 12),
                         hintText: 'Phone Number'.tr,
-                        hintStyle: TextStyle(fontSize: 14,color: notifier.subgreycolor,fontFamily: 'SofiaLight'),
+                        hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: notifier.subgreycolor,
+                            fontFamily: 'SofiaLight'),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                       ),
                       showCountryFlag: false,
                       showDropdownIcon: false,
-                      dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                      initialCountryCode: 'IN',
+                      dropdownTextStyle: TextStyle(
+                          fontSize: 14,
+                          color: notifier.blackcolor,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'SofiaLight'),
+                      initialCountryCode: 'QA',
                       onCountryChanged: (value) {
                         setState(() {
                           logInApi.ccode = value.dialCode;
                         });
                       },
-                      onChanged: (phone) {
-                      },
+                      onChanged: (phone) {},
                     ),
                     const SizedBox(height: 20),
                     TextField(
                       controller: logInApi.logPass,
                       obscureText: true,
-                      style: TextStyle(fontSize: 16,color: notifier.blackcolor,fontFamily: 'SofiaLight'),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: notifier.blackcolor,
+                          fontFamily: 'SofiaLight'),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 12),
                         hintText: 'Enter Password'.tr,
-                        hintStyle: TextStyle(fontSize: 14,color: notifier.subgreycolor,fontFamily: 'SofiaLight'),
+                        hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: notifier.subgreycolor,
+                            fontFamily: 'SofiaLight'),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: notifier.sugestionbutton),
+                          borderSide:
+                              BorderSide(color: notifier.sugestionbutton),
                         ),
                       ),
                     ),
@@ -175,64 +216,94 @@ class _LoginDialogState extends State<LoginDialog> {
                                 barrierDismissible: false,
                                 context: context,
                                 builder: (context) {
-                                return Dialog(
-                                  backgroundColor: notifier.whitecolor,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                                  child: const ForgotPassword(),
-                                );
-                              },);
+                                  return Dialog(
+                                    backgroundColor: notifier.whitecolor,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(14)),
+                                    child: const ForgotPassword(),
+                                  );
+                                },
+                              );
                             },
-                            child: Text('Forgot Password'.tr, style: TextStyle(fontFamily: 'SofiaLight',color: notifier.purplecolor,fontSize: 14,fontWeight: FontWeight.w600),))),
+                            child: Text(
+                              'Forgot Password'.tr,
+                              style: TextStyle(
+                                  fontFamily: 'SofiaLight',
+                                  color: notifier.purplecolor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600),
+                            ))),
                     SizedBox(height: constraints.maxWidth < 500 ? 30 : 40),
                     Container(
-                      alignment: Alignment.center,
-                      width: 140,
-                      child: GetBuilder<LoginApiController>(builder: (logInApi) {
-                        return ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(notifier.purplecolor),
-                              elevation: const MaterialStatePropertyAll(0),
-                              shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)))
-                          ),
-                          onPressed: () {
-
-                            logInVerify();
-                            setState(() {
-
-                            });
-                          }, child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Center(child: Text('Log In'.tr,style: const TextStyle(fontFamily: 'SofiaBold',color: Colors.white,fontSize: 16,))),
-                        ),
-                        );
-                      },)
-                    ),
+                        alignment: Alignment.center,
+                        width: 140,
+                        child: GetBuilder<LoginApiController>(
+                          builder: (logInApi) {
+                            return ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      notifier.purplecolor),
+                                  elevation: const MaterialStatePropertyAll(0),
+                                  shape: MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(24)))),
+                              onPressed: () {
+                                logInVerify();
+                                setState(() {});
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Center(
+                                    child: Text('Log In'.tr,
+                                        style: const TextStyle(
+                                          fontFamily: 'SofiaBold',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                        ))),
+                              ),
+                            );
+                          },
+                        )),
                     SizedBox(height: constraints.maxWidth < 500 ? 20 : 30),
-                    RichText(text: TextSpan(
-                        text: "Don't have an account yet? ".tr,
-                        style: TextStyle(fontFamily: 'SofiaLight',color: notifier.blackcolor,fontSize: 14),
-                        children: [
+                    RichText(
+                        text: TextSpan(
+                            text: "Don't have an account yet? ".tr,
+                            style: TextStyle(
+                                fontFamily: 'SofiaLight',
+                                color: notifier.blackcolor,
+                                fontSize: 14),
+                            children: [
                           TextSpan(
-                            recognizer: TapGestureRecognizer()..onTap = () {
-                              Get.back();
-                              showDialog(
-                                context: context, builder: (context) {
-                                return Dialog(
-                                  backgroundColor: notifier.whitecolor,
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                                    insetPadding: const EdgeInsets.all(20),
-                                    child: const SigninDialog());
-                              },).then((value) {
-                                setState(() {
-                                  const SigninDialog();
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Get.back();
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Dialog(
+                                        backgroundColor: notifier.whitecolor,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(14)),
+                                        insetPadding: const EdgeInsets.all(20),
+                                        child: const SigninDialog());
+                                  },
+                                ).then((value) {
+                                  setState(() {
+                                    const SigninDialog();
+                                  });
                                 });
-                              });
-                            },
+                              },
                             text: 'SignUp'.tr,
-                            style: TextStyle(fontFamily: 'SofiaLight',color: notifier.purplecolor,fontSize: 14,fontWeight: FontWeight.w700),
+                            style: TextStyle(
+                                fontFamily: 'SofiaLight',
+                                color: notifier.purplecolor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
                           )
-                        ]
-                    )),
+                        ])),
                   ],
                 ),
               ),
@@ -242,20 +313,19 @@ class _LoginDialogState extends State<LoginDialog> {
       ),
     );
   }
-
-  logInVerify(){
-    if(logInApi.logMobile.text.length == 10){
-
-      mobileCheckApi.mobileCheck(context,logInApi.logMobile.text).then((value) {
-
-        if (logInApi.logMobile.text.isNotEmpty) {
-
-          if(value["Result"] == "false") {
-
-            if (logInApi.logMobile.text.isNotEmpty && logInApi.logPass.text.isNotEmpty) {
-
+//30848800
+  logInVerify() {
+    if (logInApi.logMobile.text.length >= 7) {
+      mobileCheckApi
+          .mobileCheck(context, logInApi.logMobile.text)
+          .then((value) {
+        if (logInApi.logMobile.text.isNotEmpty == true) {
+          if (value["Result"] == "false") {
+            if (logInApi.logMobile.text.isNotEmpty &&
+                logInApi.logPass.text.isNotEmpty) {
               logInApi.logIn(context).then((value) {
-                if(value["Result"] == "true"){
+                print("value[ResponseMsg] - ${value["ResponseMsg"]}");
+                if (value["Result"] == "true") {
                   Fluttertoast.showToast(
                     toastLength: Toast.LENGTH_LONG,
                     webBgColor: notifier.isDark
@@ -267,17 +337,20 @@ class _LoginDialogState extends State<LoginDialog> {
                 } else {
                   Fluttertoast.showToast(
                     toastLength: Toast.LENGTH_LONG,
-                    webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+                    webBgColor: notifier.isDark
+                        ? "linear-gradient(to right, #ffffff, #ffffff)"
+                        : "linear-gradient(to right, #000000, #000000)",
                     msg: value["ResponseMsg"],
                     textColor: notifier.blackwhitecolor,
                   );
                 }
               });
-
             } else {
               Fluttertoast.showToast(
                 toastLength: Toast.LENGTH_LONG,
-                webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+                webBgColor: notifier.isDark
+                    ? "linear-gradient(to right, #ffffff, #ffffff)"
+                    : "linear-gradient(to right, #000000, #000000)",
                 msg: 'Something Went wrong!'.tr,
                 textColor: notifier.blackwhitecolor,
               );
@@ -285,7 +358,9 @@ class _LoginDialogState extends State<LoginDialog> {
           } else {
             Fluttertoast.showToast(
               toastLength: Toast.LENGTH_LONG,
-              webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+              webBgColor: notifier.isDark
+                  ? "linear-gradient(to right, #ffffff, #ffffff)"
+                  : "linear-gradient(to right, #000000, #000000)",
               msg: 'Mobile number already used!'.tr,
               textColor: notifier.blackwhitecolor,
             );
@@ -293,29 +368,32 @@ class _LoginDialogState extends State<LoginDialog> {
         } else {
           Fluttertoast.showToast(
             toastLength: Toast.LENGTH_LONG,
-            webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+            webBgColor: notifier.isDark
+                ? "linear-gradient(to right, #ffffff, #ffffff)"
+                : "linear-gradient(to right, #000000, #000000)",
             msg: 'Something Went wrong!'.tr,
             textColor: notifier.blackwhitecolor,
           );
         }
-
       });
       // Get.back();
     } else {
       Fluttertoast.showToast(
         toastLength: Toast.LENGTH_LONG,
-        webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+        webBgColor: notifier.isDark
+            ? "linear-gradient(to right, #ffffff, #ffffff)"
+            : "linear-gradient(to right, #000000, #000000)",
         msg: 'Something Went wrong!'.tr,
         textColor: notifier.blackwhitecolor,
       );
     }
   }
 
-  Widget carouselSlider(constraints){
-    return  CarouselSlider(
+  Widget carouselSlider(constraints) {
+    return CarouselSlider(
         items: [
           for (int a = 0; a < logsignLottie.length; a++)
-             Padding(
+            Padding(
               padding: const EdgeInsets.only(right: 6, left: 12),
               child: Column(
                 children: [
@@ -324,15 +402,28 @@ class _LoginDialogState extends State<LoginDialog> {
                     margin: const EdgeInsets.only(right: 5),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Lottie.asset( logsignLottie[a],height: constraints.maxWidth < 500 ? 160 : 180)
-                    ),
+                        child: Lottie.asset(logsignLottie[a],
+                            height: constraints.maxWidth < 500 ? 160 : 180)),
                   ),
                   const SizedBox(height: 10),
-                  Text(lottieTitle[a],style: TextStyle(fontFamily: 'SofiaBold',color: notifier.blackcolor,fontSize: 16),textAlign: TextAlign.center,),
+                  Text(
+                    lottieTitle[a],
+                    style: TextStyle(
+                        fontFamily: 'SofiaBold',
+                        color: notifier.blackcolor,
+                        fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
                   const SizedBox(height: 5),
-                  Container(width: 60,color: notifier.purplecolor,height: 1.5),
+                  Container(
+                      width: 60, color: notifier.purplecolor, height: 1.5),
                   const SizedBox(height: 10),
-                  Text(description[a],style: TextStyle(fontFamily: 'SofiaLight',color: notifier.subgreycolor,fontSize: 12),textAlign: TextAlign.center),
+                  Text(description[a],
+                      style: TextStyle(
+                          fontFamily: 'SofiaLight',
+                          color: notifier.subgreycolor,
+                          fontSize: 12),
+                      textAlign: TextAlign.center),
                 ],
               ),
             )

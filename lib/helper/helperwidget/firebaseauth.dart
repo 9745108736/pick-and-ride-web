@@ -7,14 +7,14 @@ import 'package:firebase_auth_web/firebase_auth_web.dart';
 class FirebaseAuthentication {
   String phoneNumber = "";
 
-  sendOTP(String phoneNumber) async {
+  sendOTP(String phoneNumber,{String? countryCode}) async {
     this.phoneNumber = phoneNumber;
     FirebaseAuth auth = FirebaseAuth.instance;
     ConfirmationResult confirmationResult = await auth.signInWithPhoneNumber(
-        '+91 $phoneNumber',
+        '+974 $phoneNumber',
         RecaptchaVerifier(auth: FirebaseAuthWeb.instance)
     );
-    printMessage("OTP Sent to +91 $phoneNumber");
+    printMessage("OTP Sent to +974 $phoneNumber");
 
     // Get the verification ID
     // String verificationId = confirmationResult.verificationId;

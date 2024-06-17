@@ -16,7 +16,7 @@ class SignUpApi extends GetxController implements GetxService{
   TextEditingController signPass = TextEditingController();
   TextEditingController referalCode = TextEditingController();
   String? userType;
-  String ccode = "+91";
+  String ccode = "+974";
 
   SignUpM? signData;
   Future signUpWithMobile(context) async {

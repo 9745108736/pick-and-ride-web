@@ -9,7 +9,7 @@ import '../models/mobileckeckmodel.dart';
 class MobileCkeckController extends GetxController implements GetxService{
 
   MobileCheck? mobileCheckData;
-  String ccode = "+91";
+  String ccode = "+974";
   Future mobileCheck(context,String mobile) async {
     Map body = {
       "mobile": mobile,

@@ -13,13 +13,14 @@ import 'package:zigzagbus/deshboard/deshboard.dart';
 import 'package:zigzagbus/helper/filldetails.dart';
 
 import '../models/loginmodel.dart';
-HomeApiController homeApi = Get.put(HomeApiController());
-class LoginApiController extends GetxController implements GetxService{
 
+HomeApiController homeApi = Get.put(HomeApiController());
+
+class LoginApiController extends GetxController implements GetxService {
   TextEditingController logMobile = TextEditingController();
   TextEditingController logPass = TextEditingController();
   bool islogin = true;
-  String ccode = "+91";
+  String ccode = "+974";
 
   var userData;
 
@@ -32,17 +33,14 @@ class LoginApiController extends GetxController implements GetxService{
     isloginsucc = prefs.getBool("islogin") ?? false;
     update();
 
-    if(isloginsucc == true){
-      var decode = jsonDecode(prefs.getString("loginDataall")!) ;
-      userData  = decode;
+    if (isloginsucc == true) {
+      var decode = jsonDecode(prefs.getString("loginDataall")!);
+      userData = decode;
       update();
     }
-
   }
 
-
   Future logIn(context) async {
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     Map body = {
@@ -50,15 +48,18 @@ class LoginApiController extends GetxController implements GetxService{
       "ccode": ccode,
       "password": logPass.text
     };
-    var response = await http.post(Uri.parse('${Config.baseUrl}${Config.login}'), body: jsonEncode(body), headers: {
-      'Content-Type': 'application/json',});
+    var response = await http.post(
+        Uri.parse('${Config.baseUrl}${Config.login}'),
+        body: jsonEncode(body),
+        headers: {
+          'Content-Type': 'application/json',
+        });
     var logInData = jsonDecode(response.body);
 
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       if (logInData["Result"] == "true") {
         logData = logInFromJson(response.body);
         if (logData!.result == "true") {
-
           islogin = false;
           update();
 
@@ -74,13 +75,14 @@ class LoginApiController extends GetxController implements GetxService{
           Get.back();
           return logInData;
         }
-
       }
       return logInData;
     } else {
       Fluttertoast.showToast(
         toastLength: Toast.LENGTH_LONG,
-        webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
+        webBgColor: notifier.isDark
+            ? "linear-gradient(to right, #ffffff, #ffffff)"
+            : "linear-gradient(to right, #000000, #000000)",
         msg: "Something Went Wrong!".tr,
         textColor: notifier.blackwhitecolor,
       );

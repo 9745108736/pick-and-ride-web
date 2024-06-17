@@ -13,7 +13,7 @@ class ForgotPassController extends GetxController implements GetxService{
 
   TextEditingController forgotPass = TextEditingController();
   TextEditingController forgotMobile = TextEditingController();
-  String ccode = "+91";
+  String ccode = "+974";
   ForgotPassM? forgotpassData;
   Future forgotPassword(context, mobile, password) async {
     Map body = {

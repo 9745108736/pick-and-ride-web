@@ -151,7 +151,7 @@ class _ProfileandEditState extends State<ProfileandEdit> {
                       showCountryFlag: false,
                       showDropdownIcon: false,
                       dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                      initialCountryCode: "IN",
+                      initialCountryCode: "QA",
                       onCountryChanged: (value) {
                         // setState(() {
                         //   logInApi.ccode = value.dialCode;
@@ -262,7 +262,7 @@ class _ProfileandEditState extends State<ProfileandEdit> {
                             showCountryFlag: false,
                             showDropdownIcon: false,
                             dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                            initialCountryCode: "IN",
+                            initialCountryCode: "QA",
                             onCountryChanged: (value) {
                               // setState(() {
                               //   logInApi.ccode = value.dialCode;
@@ -436,7 +436,7 @@ class _ProfileandEditState extends State<ProfileandEdit> {
                         showCountryFlag: false,
                         showDropdownIcon: false,
                         dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                        initialCountryCode: "IN",
+                        initialCountryCode: "QA",
                         onCountryChanged: (value) {
                           // setState(() {
                           //   logInApi.ccode = value.dialCode;
@@ -547,7 +547,7 @@ class _ProfileandEditState extends State<ProfileandEdit> {
                               showCountryFlag: false,
                               showDropdownIcon: false,
                               dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                              initialCountryCode: "IN",
+                              initialCountryCode: "QA",
                               onCountryChanged: (value) {
                                 // setState(() {
                                 //   logInApi.ccode = value.dialCode;
