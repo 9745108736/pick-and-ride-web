@@ -700,7 +700,6 @@ class _PassangerDetailsState extends State<PassangerDetails> {
                   height: 40,
                   child: TextField(
                     controller: contDetailMobile,
-                    maxLength: 10,
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
@@ -885,7 +884,7 @@ class _PassangerDetailsState extends State<PassangerDetails> {
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly,
                       ],
-                      maxLength: 10,
+                     
                       decoration: InputDecoration(
                         counterText: "",
                         contentPadding: const EdgeInsets.symmetric(vertical: 13,horizontal: 10),
@@ -1054,7 +1053,7 @@ class DynamicWidget1 extends StatelessWidget {
   Widget build(BuildContext context) {
     notifier = Provider.of<ColorNotifier>(context, listen: true);
     return TextFormField(
-      style: TextStyle(fontSize: 14,color: notifier.blackcolor,fontFamily: 'SofiaLight'),
+      style: TextStyle(fontSize: 14, color: notifier.blackcolor, fontFamily: 'SofiaLight'),
       controller: controller1,
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.digitsOnly,
@@ -1066,7 +1065,7 @@ class DynamicWidget1 extends StatelessWidget {
         }
         return null;
       },
-      maxLength: 2,
+      maxLength: 3,
 
       keyboardType: TextInputType.number,
       decoration: InputDecoration(

@@ -9,6 +9,7 @@ import 'package:zigzagbus/apicontroller/fogotpasscontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:zigzagbus/const/common_const.dart';
 
 import '../../apicontroller/loginapicontroller.dart';
 import '../../apicontroller/mobilecheckcontroller.dart';
@@ -83,10 +84,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               showCountryFlag: false,
               showDropdownIcon: false,
               dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-              initialCountryCode: 'QA',
+              initialCountryCode: countryCode,
               onCountryChanged: (value) {
                 setState(() {
-                  mobileCheckApi.ccode  =  value.dialCode;
+                  mobileCheckApi.ccode  =  "+${value.dialCode}";
                 });
               },
               onChanged: (phone) {
@@ -127,7 +128,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     );
   }
   forpassvalid(context, constraints){
-    if(mobile.text.length == 10){
 
       mobileCheckApi.mobileCheck(context, mobile.text).then((value) async {
 
@@ -152,17 +152,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               );
             },);
             // _signInWithMobileNumber1(context);
-           temp = await FirebaseAuthentication().sendOTP(mobile.text);
+           temp = await FirebaseAuthentication().sendOTP(mobile.text, mobileCheckApi.ccode);
           }
       });
-    } else {
-      Fluttertoast.showToast(
-        toastLength: Toast.LENGTH_LONG,
-        webBgColor: notifier.isDark ? "linear-gradient(to right, #ffffff, #ffffff)" : "linear-gradient(to right, #000000, #000000)" ,
-        msg: 'Please enter your mobile number currectly!'.tr,
-        textColor: notifier.blackwhitecolor,
-      );
-    }
+
   }
 
   Widget otpField(context, constraints){
@@ -177,33 +170,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           children: [
             Text('Enter OTP'.tr,style: TextStyle(fontSize: 28,color: notifier.blackcolor,fontFamily: 'SofiaBold'),),
             const SizedBox(height: 40),
-            // OTPTextField(
-            //   length: 5,
-            //   width: MediaQuery.of(context).size.width,
-            //   fieldWidth: 80,
-            //   style: TextStyle(
-            //       fontSize: 17
-            //   ),
-            //   textFieldAlignment: MainAxisAlignment.spaceAround,
-            //   fieldStyle: FieldStyle.underline,
-            //   onCompleted: (pin) {
-            //     print("Completed: " + pin);
-            //   },
-            // ),
-            // OTPTextField(
-            //   controller: otpcont,
-            //   length: 6,
-            //   width: MediaQuery.of(context).size.width,
-            //   fieldWidth: 30,
-            //   style: TextStyle(
-            //       fontSize: 17
-            //   ),
-            //   textFieldAlignment: MainAxisAlignment.spaceAround,
-            //   onCompleted: (pin) {
-            //       otpPin = pin;
-            //     print("Completed: " + pin);
-            //   },
-            // ),
             OtpTextField(
               numberOfFields: 6,
               borderColor: const Color(0xFF512DA8),

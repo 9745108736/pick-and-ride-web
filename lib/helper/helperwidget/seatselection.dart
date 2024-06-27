@@ -29,6 +29,7 @@ class _SeatSelectionState extends State<SeatSelection> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print("BOARDING DATA >>>>>>>>>>>>>>> ${pickdropApi.pickdropData!.dropStops[0]}");
   }
 
   BusLayoutApi busLayoutApi = Get.put(BusLayoutApi());
@@ -339,6 +340,7 @@ class _SeatSelectionState extends State<SeatSelection> {
                                                   } else {
                                                     if(lowwerselectseat.contains(busLayoutApi.buslayoutData!.busLayoutData[0].lowerLayout[index1][index].seatNumber) == true){
                                                       setState(() {
+                                                        total -= double.parse(busLayoutApi.buslayoutData!.busLayoutData[0].ticketPrice);
                                                         // bottom -= double.parse(data!.busLayoutData[0].ticketPrice);
                                                         lowwerselectseat.remove(busLayoutApi.buslayoutData!.busLayoutData[0].lowerLayout[index1][index].seatNumber);
                                                       });
@@ -367,6 +369,7 @@ class _SeatSelectionState extends State<SeatSelection> {
                                                         );
                                                       } else {
                                                         setState(() {
+                                                          total += double.parse(busLayoutApi.buslayoutData!.busLayoutData[0].ticketPrice);
                                                           lowwerselectseat.add(busLayoutApi.buslayoutData!.busLayoutData[0].lowerLayout[index1][index].seatNumber);
                                                         });
                                                       }
@@ -1125,6 +1128,7 @@ class _SeatSelectionState extends State<SeatSelection> {
                                                     } else {
                                                       if(lowwerselectseat.contains(busLayoutApi.buslayoutData!.busLayoutData[0].lowerLayout[index1][index].seatNumber) == true){
                                                         setState(() {
+                                                          total -= double.parse(busLayoutApi.buslayoutData!.busLayoutData[0].ticketPrice);
                                                           // bottom -= double.parse(data!.busLayoutData[0].ticketPrice);
                                                           lowwerselectseat.remove(busLayoutApi.buslayoutData!.busLayoutData[0].lowerLayout[index1][index].seatNumber);
                                                         });
@@ -1153,6 +1157,7 @@ class _SeatSelectionState extends State<SeatSelection> {
                                                           );
                                                         } else {
                                                           setState(() {
+                                                            total += double.parse(busLayoutApi.buslayoutData!.busLayoutData[0].ticketPrice);
                                                             lowwerselectseat.add(busLayoutApi.buslayoutData!.busLayoutData[0].lowerLayout[index1][index].seatNumber);
                                                           });
                                                         }
@@ -1210,7 +1215,7 @@ class _SeatSelectionState extends State<SeatSelection> {
                                                 ? SizedBox(
                                               width: searchBusApi.searchBusData!.busData[widget.index2].isSleeper == '1' ? 48 : 35,
                                             )
-                                                :Padding(
+                                                : Padding(
                                               padding: const EdgeInsets.only(
                                                   right: 5),
                                               child: InkWell(
@@ -1418,7 +1423,7 @@ class _SeatSelectionState extends State<SeatSelection> {
                                                                   : const DecorationImage(image: AssetImage("assets/seats/emptychair.png"),fit: BoxFit.fill,),
                                                                    ),
                                                                child: Text(busLayoutApi.buslayoutData!.busLayoutData[0].upperLayout[index1][index].seatNumber,style: TextStyle(fontFamily: 'SofiaLight', color: notifier.subgreycolor,fontSize: 12)),
-                                                                                                                        ),
+                                                               ),
                                                             ],
                                                           )
                                                     ),
@@ -1563,16 +1568,19 @@ class _SeatSelectionState extends State<SeatSelection> {
 
   Widget lowwer() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          'Lower Berth'.tr,
-          style:
-              TextStyle(color: notifier.blackcolor, fontFamily: 'SofiaLight'),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
+        Flexible(
+          child: Text(
+            'Lower Berth'.tr,
+            style:
+                TextStyle(color: notifier.blackcolor, fontFamily: 'SofiaLight'),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
         ),
-        const Spacer(),
+        // const Spacer(),
         Image.asset('assets/seats/steering.png', height: 30),
       ],
     );
@@ -1580,9 +1588,9 @@ class _SeatSelectionState extends State<SeatSelection> {
 
   Widget lowwerRiverse() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Image.asset('assets/seats/steering.png', height: 30),
-        const Spacer(),
         Text(
           'Lower Berth'.tr,
           style: TextStyle(color: notifier.blackcolor),

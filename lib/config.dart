@@ -3,15 +3,25 @@ class Config {
   // static String paymentUrl = 'https://prozigzagbus.cscodetech.cloud/';
   // static String imageBaseUrl = "https://prozigzagbus.cscodetech.cloud/";
 
-  // static String baseUrl = 'https://prozigzagbus.cscodetech.cloud/api/';
-  static String paymentUrl = 'https://forwardg5.sg-host.com/';
-  static String imageBaseUrl = "https://forwardg5.sg-host.com/";
-  static String baseUrl = 'https://forwardg5.sg-host.com/api/';
-
+  //stage
+  static String paymentUrl = 'https://ridesignup.pickandride.qa/';
+  static String imageBaseUrl = "https://ridesignup.pickandride.qa/";
 
   // static String baseUrl = 'https://forwardg5.sg-host.com/api/';
-  // static String paymentUrl = 'https://forwardg5.sg-host.com/';
-  // static String imageBaseUrl = "https://forwardg5.sg-host.com/";
+
+  //prod url
+
+  static String baseUrl = 'https://ridesignup.pickandride.qa/api/';
+
+  //company
+  // static String baseUrl = 'https://bus.e.co.mz/api/';
+  // static String paymentUrl = 'https://bus.e.co.mz/';
+  // static String imageBaseUrl = "https://bus.e.co.mz/";
+
+  //company
+  // static String baseUrl = 'https://bus.e.co.mz/api/';
+  // static String paymentUrl = 'https://bus.e.co.mz/';
+  // static String imageBaseUrl = "https://bus.e.co.mz/";
 
   static String login = 'user_login.php';
   static String signup = 'reg_user.php';
@@ -45,4 +55,3 @@ class Config {
 }
 
 // http://15.207.11.52/redbusv2/images/bus/1705149580.png
-

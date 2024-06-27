@@ -10,9 +10,6 @@ Future<Uint8List> makePdf({tickethistory, currency, netImage}) async{
   TicketDetailsApi tickethistoryApi = Get.put(TicketDetailsApi());
 
   final pdf = Document();
-  // final netImage = await networkImage('${Config.baseUrl}${tickethistoryApi.ticketDetailsData!.tickethistory[0].busImg}');
-  // final netImage = await networkImage(Config.imageBaseUrl + tickethistoryApi.ticketDetailsData!.tickethistory[0].busImg);
-  // final busImage = await networkImage("${Config.baseUrl}${tickethistoryApi.ticketDetailsData!.tickethistory[0].busImg}");
   final netImage1 = await networkImage(tickethistoryApi.ticketDetailsData!.tickethistory[0].qrcode);
   final imageLogo = MemoryImage((await rootBundle.load('assets/Group3.png')).buffer.asUint8List());
   final imageLogo1 = MemoryImage((await rootBundle.load('assets/AutoLayoutHorizontal.png')).buffer.asUint8List());
@@ -46,7 +43,6 @@ Future<Uint8List> makePdf({tickethistory, currency, netImage}) async{
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 10,
-                                // color: notifier.textColor
                               )),
                           Spacer(),
                           RichText(
@@ -111,7 +107,6 @@ Future<Uint8List> makePdf({tickethistory, currency, netImage}) async{
                                   child: ClipRRect(
                                     horizontalRadius: 25,
                                     verticalRadius: 20,
-                                    // child: Image(netImage, fit: BoxFit.fill)
                                   ),
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
@@ -301,9 +296,6 @@ Future<Uint8List> makePdf({tickethistory, currency, netImage}) async{
                       child: Table(
                         columnWidths: const <int, TableColumnWidth>{
                           0: FixedColumnWidth(300),
-                          // 1: FixedColumnWidth(40),
-                          // 2: FixedColumnWidth(40),
-                          // 3: FixedColumnWidth(40),
                         },
                         children: <TableRow>[
                           TableRow(
@@ -516,11 +508,9 @@ Future<Uint8List> makePdf({tickethistory, currency, netImage}) async{
 }
 
 String convertTimeTo12HourFormat(String time24Hour) {
-  // Parse the input time in 24-hour format
   final inputFormat = DateFormat('HH:mm:ss');
   final inputTime = inputFormat.parse(time24Hour);
 
-  // Format the time in 12-hour format
   final outputFormat = DateFormat('h:mm a');
   final formattedTime = outputFormat.format(inputTime);
 

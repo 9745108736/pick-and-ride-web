@@ -1,27 +1,27 @@
+
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
 // import 'package:webview_flutter_web/webview_flutter_web.dart';
 import 'package:zigzagbus/helper/routes.dart';
 
 import 'deshboard/scrolling.dart';
 import 'helper/colornotifier.dart';
 import 'helper/helperwidget/languagetran.dart';
-
 // import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
-import 'firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
     await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+        options: const FirebaseOptions(
+            apiKey: "AIzaSyDUaDOXKWaHeg61_Y1Yx4kJSBkdbABVKiQ",
+            appId: "1:319710447950:web:73c22fdb6e7af7c6a2f61f",
+            messagingSenderId: "319710447950",
+            projectId: "redbus-3ec46"));
   }
   // await Firebase.initializeApp();
   // final prefs = await SharedPreferences.getInstance();

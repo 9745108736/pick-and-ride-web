@@ -21,10 +21,7 @@ class HomeApiController extends GetxController implements GetxService {
     Map body = {
       "uid":  loginApi.isloginsucc ? loginApi.userData["id"] : "0",
     };
-    String url = Config.baseUrl + Config.home;
-    print("home api called ********** -  $url");
-    var homeResponse = await http.post(Uri.parse(url),
-    // var homeResponse = await http.post(Uri.parse(Config.baseUrl + Config.home),
+    var homeResponse = await http.post(Uri.parse(Config.baseUrl + Config.home),
       body: jsonEncode(body),
         headers: {'Content-Type': 'application/json',}
     );

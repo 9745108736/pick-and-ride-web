@@ -243,7 +243,7 @@ class _PaymentPlatformState extends State<PaymentPlatform> {
                     style: ButtonStyle(
                       elevation: const MaterialStatePropertyAll(0),
                       backgroundColor:
-                          MaterialStatePropertyAll(notifier.purplecolor),
+                      MaterialStatePropertyAll(notifier.purplecolor),
                       shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),
                     ),

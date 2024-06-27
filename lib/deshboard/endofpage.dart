@@ -6,6 +6,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zigzagbus/const/common_const.dart';
 
 import '../helper/colornotifier.dart';
 import '../mediaquery/mq.dart';
@@ -40,7 +41,7 @@ class _endofpageState extends State<endofpage> {
   ];
   List contacts = [
     'hello@prozigzag.com',
-    ' +91 123456789',
+    ' $phoneCode 123456789',
     'India'
   ];
 

@@ -3,18 +3,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth_web/firebase_auth_web.dart';
+import 'package:zigzagbus/const/common_const.dart';
 
 class FirebaseAuthentication {
   String phoneNumber = "";
 
-  sendOTP(String phoneNumber,{String? countryCode}) async {
+  sendOTP(String phoneNumber, ccode) async {
     this.phoneNumber = phoneNumber;
     FirebaseAuth auth = FirebaseAuth.instance;
     ConfirmationResult confirmationResult = await auth.signInWithPhoneNumber(
-        '+974 $phoneNumber',
+        '$ccode $phoneNumber',
         RecaptchaVerifier(auth: FirebaseAuthWeb.instance)
     );
-    printMessage("OTP Sent to +974 $phoneNumber");
+    printMessage("OTP Sent to $phoneCode $phoneNumber");
 
     // Get the verification ID
     // String verificationId = confirmationResult.verificationId;
@@ -34,6 +35,7 @@ class FirebaseAuthentication {
       // For example:
       if (userCredential.additionalUserInfo!.isNewUser == false) {
         // User is signed in
+        print("<<><><><><><><><><><><><${userCredential.additionalUserInfo!.authorizationCode}");
         return true;
       } else {
         return false;

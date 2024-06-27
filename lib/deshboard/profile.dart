@@ -4,6 +4,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 import 'package:zigzagbus/apicontroller/loginapicontroller.dart';
 import 'package:zigzagbus/apicontroller/profileeditapi.dart';
+import 'package:zigzagbus/const/common_const.dart';
 import 'package:zigzagbus/deshboard/heading.dart';
 
 import '../helper/appbar.dart';
@@ -151,7 +152,7 @@ class _ProfileandEditState extends State<ProfileandEdit> {
                       showCountryFlag: false,
                       showDropdownIcon: false,
                       dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                      initialCountryCode: "QA",
+                      initialCountryCode: countryCode,
                       onCountryChanged: (value) {
                         // setState(() {
                         //   logInApi.ccode = value.dialCode;
@@ -262,7 +263,7 @@ class _ProfileandEditState extends State<ProfileandEdit> {
                             showCountryFlag: false,
                             showDropdownIcon: false,
                             dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                            initialCountryCode: "QA",
+                            initialCountryCode: countryCode,
                             onCountryChanged: (value) {
                               // setState(() {
                               //   logInApi.ccode = value.dialCode;
@@ -436,7 +437,7 @@ class _ProfileandEditState extends State<ProfileandEdit> {
                         showCountryFlag: false,
                         showDropdownIcon: false,
                         dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                        initialCountryCode: "QA",
+                        initialCountryCode: countryCode,
                         onCountryChanged: (value) {
                           // setState(() {
                           //   logInApi.ccode = value.dialCode;
@@ -547,7 +548,7 @@ class _ProfileandEditState extends State<ProfileandEdit> {
                               showCountryFlag: false,
                               showDropdownIcon: false,
                               dropdownTextStyle: TextStyle(fontSize: 14,color: notifier.blackcolor,fontWeight: FontWeight.w600,fontFamily: 'SofiaLight'),
-                              initialCountryCode: "QA",
+                              initialCountryCode: countryCode,
                               onCountryChanged: (value) {
                                 // setState(() {
                                 //   logInApi.ccode = value.dialCode;

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:zigzagbus/config.dart';
+import 'package:zigzagbus/const/common_const.dart';
 import 'package:zigzagbus/models/forpassmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -13,7 +14,7 @@ class ForgotPassController extends GetxController implements GetxService{
 
   TextEditingController forgotPass = TextEditingController();
   TextEditingController forgotMobile = TextEditingController();
-  String ccode = "+974";
+  String ccode = phoneCode;
   ForgotPassM? forgotpassData;
   Future forgotPassword(context, mobile, password) async {
     Map body = {
